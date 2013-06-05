@@ -6,7 +6,7 @@ A Java Operating System that runs on top of your currently running operating sys
 External software used in this project
 ---------------------------------------
 
-Obviously all external software used in this project will be open source.
+Obviously all external software used in this project will be open source and written in Java.
 
 [minimal-json by ralfstx](https://github.com/ralfstx/minimal-json)
 - A fast JSON writer and reader.
