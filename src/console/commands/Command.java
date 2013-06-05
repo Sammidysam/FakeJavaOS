@@ -4,9 +4,6 @@ import console.Console;
 
 public class Command {
 	protected String args = null;
-	public static String getActivator(){
-		return null;
-	}
 	public boolean hasArgs(){
 		return false;
 	}

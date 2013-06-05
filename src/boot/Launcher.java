@@ -7,7 +7,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
@@ -21,8 +20,6 @@ import boot.arguments.ArgumentMatcher;
 import boot.arguments.ClosingArgument;
 import boot.arguments.UnmatchedArgumentException;
 
-import io.Directories;
-
 public class Launcher {
 	private boolean guiEnabled = true;
 	private String[] args;
@@ -34,6 +31,8 @@ public class Launcher {
 		for(int i = 0; i < args.length; i++){
 			try {
 				Argument arg = ArgumentMatcher.matchArgument(args[i]);
+				if(args[i].contains("="))
+					arg.setEquals(args[i].substring(args[i].indexOf('=') + 1, args[i].length()));
 //				check if there is a closing argument
 //				if so, we will need to close after processing all args
 				if(arg instanceof ClosingArgument)
@@ -43,7 +42,7 @@ public class Launcher {
 //				run necessary code for the argument
 				arg.run(this);
 			} catch (UnmatchedArgumentException e) {
-				System.out.println(e.getMessage());
+				System.err.println(e.getMessage());
 			}
 		}
 		if(hasClosing){
@@ -56,20 +55,18 @@ public class Launcher {
 		BufferedReader br = null;
 		String driveLocation = null;
 		try {
-			if(new File(Directories.getJarDirectory() + File.separatorChar + "init.txt").exists()){
-				fstream = new FileInputStream(Directories.getJarDirectory() + File.separatorChar + "init.txt");
+			if(new File(System.getProperty("jarDir") + File.separatorChar + "init.txt").exists()){
+				fstream = new FileInputStream(System.getProperty("jarDir") + File.separatorChar + "init.txt");
 				DataInputStream in = new DataInputStream(fstream);
 				br = new BufferedReader(new InputStreamReader(in));
 				driveLocation = br.readLine();
-			} else if(!new File(Directories.getDriveDirectory()).exists()){
+			} else if(!new File(System.getProperty("JDrive")).exists()){
 				System.out.println("No FakeJavaOS directory detected!");
 				System.out.println("You need to run FakeJavaOS with the argument \"--init\" to initialize FakeJavaOS!");
 				System.exit(0);
 			}
 			else
-				driveLocation = Directories.getDriveDirectory();
-		} catch (URISyntaxException e) {
-			System.exit(1);
+				driveLocation = System.getProperty("JDrive");
 		} catch (FileNotFoundException e) {
 			System.err.println("What just happened?");
 			System.exit(1);

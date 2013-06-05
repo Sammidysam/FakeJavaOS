@@ -1,13 +1,10 @@
 package boot.arguments;
 
-import io.Directories;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.URISyntaxException;
 
 import users.Group;
 import users.GroupAdministrator;
@@ -26,11 +23,7 @@ public class ArgumentInit extends ClosingArgument {
 	public void run(Launcher caller){
 		System.out.println("FakeJavaOS needs a fake drive to store data in.  This will just be a folder on your computer.");
 		System.out.println("Would you like to specify a custom path [y] or use the default path [n]?");
-		try {
-			System.out.println("The default path is " + Directories.getDriveDirectory());
-		} catch (URISyntaxException e) {
-			
-		}
+		System.out.println("The default path is " + System.getProperty("JDrive"));			
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		PrintWriter writer = null;
 		File driveLocation = null;
@@ -39,20 +32,18 @@ public class ArgumentInit extends ClosingArgument {
 			if(input.charAt(0) == 'y'){
 				System.out.println("Please enter the custom path for the fake drive.");
 				input = reader.readLine();
-				File init = new File(Directories.getJarDirectory() + File.separatorChar + "init.txt");
+				File init = new File(System.getProperty("jarDir") + File.separatorChar + "init.txt");
 				writer = new PrintWriter(init);
 				writer.println(input);
 			} else {
-				System.out.println(Directories.getDriveDirectory() + " will be used.");
-				input = Directories.getDriveDirectory();
+				System.out.println(System.getProperty("JDrive") + " will be used.");
+				input = System.getProperty("JDrive");
 			}
 			driveLocation = new File(input);
 			if(!driveLocation.mkdirs())
 				System.err.println("Failed to make necessary directories!");
 		} catch (IOException e) {
 			System.err.println("Failed to read user input!");
-		} catch (URISyntaxException e) {
-			
 		} finally {
 			try {
 				writer.close();
