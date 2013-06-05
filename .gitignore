@@ -165,3 +165,5 @@ pip-log.txt
 #*.txt
 
 *.exe
+*.sublime_project
+*.sublime_workspace
