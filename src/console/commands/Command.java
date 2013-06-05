@@ -23,7 +23,8 @@ public class Command {
 				return argsList;
 			}
 		} catch (NullPointerException e) {
-			System.err.println("Args were not set when trying to split args!");
+//			System.err.println("Args were not set when trying to split args!");
+//			commented out due to being annoying
 			return new String[0];
 		}
 	}

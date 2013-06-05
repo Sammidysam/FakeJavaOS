@@ -64,6 +64,8 @@ public class ArgumentInit extends ClosingArgument {
 		System.out.println("What would you like to name your user?");
 		try {
 			String name = reader.readLine();
+			System.out.println("What would you like to make your user's password?");
+			String password = reader.readLine();
 			System.out.println("Would you like to make your user an administrator [a] or normal user [n]?");
 			char answer = reader.readLine().charAt(0);
 			Group group;
@@ -72,7 +74,7 @@ public class ArgumentInit extends ClosingArgument {
 			else
 				group = new GroupNormal();
 			System.out.println("Saving user...");
-			User user = new User(name, group);
+			User user = new User(name, password, group);
 			if(!user.saveUser(driveLocation.getAbsolutePath()))
 				System.err.println("Failed to save user!");
 		} catch (IOException e) {

@@ -10,10 +10,4 @@ public class Directories {
 	public static String getDriveDirectory() throws URISyntaxException {
 		return getJarDirectory() + File.separatorChar + "JDrive";
 	}
-	public static String getUsersDirectory() throws URISyntaxException {
-		return getDriveDirectory() + File.separatorChar + "Users";
-	}
-	public static String getUsersDirectory(String driveLocation) throws URISyntaxException {
-		return driveLocation + File.separatorChar + "Users";
-	}
 }

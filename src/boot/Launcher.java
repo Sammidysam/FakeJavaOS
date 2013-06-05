@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 
+import com.eclipsesource.json.JsonArray;
+import com.eclipsesource.json.JsonObject;
+
 import users.GroupAdministrator;
 import users.GroupNormal;
 import users.User;
@@ -97,23 +100,27 @@ public class Launcher {
 		User user = null;
 		try {
 			String username = reader.readLine();
-			File userFile = new File(Directories.getUsersDirectory(driveLocation) + File.separatorChar + username + ".user");
-			if(userFile.exists()){
-				fstream = new FileInputStream(Directories.getUsersDirectory(driveLocation) + File.separatorChar + username + ".user");
+			System.out.println("Password?");
+			String password = reader.readLine();
+			File usersFile = new File(driveLocation + File.separatorChar + "users.json");
+			if(usersFile.exists()){
+				fstream = new FileInputStream(driveLocation + File.separatorChar + "users.json");
 				DataInputStream in = new DataInputStream(fstream);
 				br = new BufferedReader(new InputStreamReader(in));
-				String group = br.readLine();
-				if(group.equals("GroupAdministrator"))
-					user = new User(username, new GroupAdministrator());
-				else if(group.equals("GroupNormal"))
-					user = new User(username, new GroupNormal());
+				JsonObject users = JsonObject.readFrom(br);
+				JsonArray usernames = users.get("Usernames").asArray();
+				JsonArray passwords = users.get("Passwords").asArray();
+				JsonArray groups = users.get("Groups").asArray();
+				for(int i = 0; i < usernames.size(); i++)
+					if(usernames.get(i).asString().equals(username) && passwords.get(i).asString().equals(password))
+						user = new User(username, password, groups.get(i).asString().equals("Administrator") ? new GroupAdministrator() : new GroupNormal());
+			} else {
+				System.err.println("Users file does not exist!");
+				System.err.println("Run with argument \"--init\" to create a user!");
+				System.exit(1);
 			}
-			else
-				System.err.println("User " + username + " does not exist!");
 		} catch (IOException e) {
 			System.err.println("Failed to read user input!");
-		} catch (URISyntaxException e) {
-			
 		} finally {
 			try {
 				br.close();

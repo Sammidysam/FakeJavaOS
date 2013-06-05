@@ -24,7 +24,7 @@ public class Console {
 	public void processCommand(String input){
 		try {
 			Command command = input.contains(" ") ? CommandMatcher.matchCommand(input.substring(0, input.indexOf(' '))) : CommandMatcher.matchCommand(input);
-			if(command.hasArgs()){
+			if(command.hasArgs() && input.indexOf(' ') != -1){
 				String args = input.substring(input.indexOf(' ') + 1, input.length());
 				command.setArgs(args);
 			}

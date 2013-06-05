@@ -6,8 +6,8 @@ public class CommandMatcher {
 			return new CommandBack();
 		else if(command.equals(CommandStop.getActivator()))
 			return new CommandStop();
-		else if(command.equals(CommandUserInfo.getActivator()))
-			return new CommandUserInfo();
+		else if(command.equals(CommandUser.getActivator()))
+			return new CommandUser();
 		else
 			throw new UnmatchedCommandException("Unable to match command " + command);
 	}
