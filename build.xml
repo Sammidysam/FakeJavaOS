@@ -5,19 +5,11 @@
     <property name="src" value="src"/>
     <property name="obj" value="obj"/>
     <property name="bin" value="bin"/>
-    <path id="FakeJavaOS.jar.classpath">
-        <fileset dir="${basedir}">
-            <include name="lib/*.jar"/>
-        </fileset>
-    </path>
-    <manifestclasspath property="lib.list" jarfile="lib/*.jar">
-    	<classpath refid="FakeJavaOS.jar.classpath"/>
-    </manifestclasspath>
     <path id="FakeJavaOS.build.classpath">
         <pathelement location="${obj}"/>
-        <pathelement location="lib/${lib.list}"/>
+        <pathelement location="lib/minimal-json.jar"/>
+        <pathelement location="lib/ClassEnumerator.jar"/>
     </path>
-    <echo message="sorry, debugging info.  ${lib.list}"/>
     <target name="init">
         <mkdir dir="${obj}"/>
         <copy includeemptydirs="false" todir="${obj}">
@@ -44,10 +36,11 @@
     	<jar destfile="${bin}/FakeJavaOS.jar" basedir="${obj}" includes="${obj}">
     		<manifest>
     			<attribute name="Main-Class" value="boot.Main"/>
-    			<attribute name="Class-Path" value="../lib/${lib.list}"/>
+    			<attribute name="Class-Path" value="../lib/minimal-json.jar ../lib/ClassEnumerator.jar"/>
     		</manifest>
     		<fileset dir="${obj}"/>
     		<zipfileset dir="lib" includes="minimal-json.jar" fullpath="lib/minimal-json.jar"/>
+            <zipfileset dir="lib" includes="ClassEnumerator.jar" fullpath="lib/ClassEnumerator.jar"/>
     	</jar>
     </target>
 </project>

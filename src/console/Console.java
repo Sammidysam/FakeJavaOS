@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import users.User;
 
 import console.commands.Command;
-import console.commands.CommandMatcher;
+import console.commands.Matcher;
 import console.commands.UnmatchedCommandException;
 
 public class Console {
@@ -23,7 +23,7 @@ public class Console {
 	}
 	public void processCommand(String input){
 		try {
-			Command command = input.contains(" ") ? CommandMatcher.matchCommand(input.substring(0, input.indexOf(' '))) : CommandMatcher.matchCommand(input);
+			Command command = input.contains(" ") ? Matcher.matchCommand(input.substring(0, input.indexOf(' '))) : Matcher.matchCommand(input);
 			if(command.hasArgs() && input.indexOf(' ') != -1){
 				String args = input.substring(input.indexOf(' ') + 1, input.length());
 				command.setArgs(args);
@@ -47,7 +47,7 @@ public class Console {
 		}
 	}
 	private void setupWindow(){
-		
+		System.out.println("Not yet implemented!");
 	}
 	public String getLastDirectory(){
 		return lastDirectory;

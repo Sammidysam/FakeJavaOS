@@ -13,7 +13,7 @@ public class CommandUser extends Command {
 	public boolean hasArgs(){
 		return true;
 	}
-	public static String getActivator(){
+	public String getActivator(){
 		return "user";
 	}
 	public int run(Console caller){

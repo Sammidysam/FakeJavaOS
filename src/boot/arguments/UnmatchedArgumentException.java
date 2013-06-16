@@ -1,6 +1,5 @@
 package boot.arguments;
 
-@SuppressWarnings("serial")
 public class UnmatchedArgumentException extends Exception {
 	public UnmatchedArgumentException(String message){
 		super(message);

@@ -1,6 +1,5 @@
 package console.commands;
 
-@SuppressWarnings("serial")
 public class UnknownArgumentException extends Exception {
 	public UnknownArgumentException(String message){
 		super(message);

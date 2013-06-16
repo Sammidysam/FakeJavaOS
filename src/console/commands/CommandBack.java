@@ -3,7 +3,7 @@ package console.commands;
 import console.Console;
 
 public class CommandBack extends Command {
-	public static String getActivator(){
+	public String getActivator(){
 		return "back";
 	}
 	public int run(Console caller){

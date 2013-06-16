@@ -3,7 +3,7 @@ package console.commands;
 import console.Console;
 
 public class CommandStop extends Command {
-	public static String getActivator(){
+	public String getActivator(){
 		return "stop";
 	}
 	public int run(Console caller){

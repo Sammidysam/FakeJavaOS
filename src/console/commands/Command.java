@@ -10,6 +10,9 @@ public class Command {
 	public void setArgs(String args){
 		this.args = args;
 	}
+	public String getActivator(){
+		return null;
+	}
 	protected String[] splitArgs(){
 		try {
 			if(args.contains(" ")){
