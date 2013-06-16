@@ -16,7 +16,7 @@ import users.GroupNormal;
 import users.User;
 
 import boot.arguments.Argument;
-import boot.arguments.ArgumentMatcher;
+import boot.arguments.Matcher;
 import boot.arguments.ClosingArgument;
 import boot.arguments.UnmatchedArgumentException;
 
@@ -30,7 +30,7 @@ public class Launcher {
 		boolean hasClosing = false;
 		for(int i = 0; i < args.length; i++){
 			try {
-				Argument arg = ArgumentMatcher.matchArgument(args[i]);
+				Argument arg = Matcher.matchArgument(args[i]);
 				if(args[i].contains("="))
 					arg.setEquals(args[i].substring(args[i].indexOf('=') + 1, args[i].length()));
 //				check if there is a closing argument
