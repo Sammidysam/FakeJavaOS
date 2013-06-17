@@ -21,7 +21,7 @@
     </target>
     <target name="clean">
         <delete dir="${obj}"/>
-    	<delete dir="${bin}"/>
+    	<delete file="${bin}/FakeJavaOS.jar"/>
     </target>
     <target depends="clean" name="cleanall"/>
     <target depends="build-project" name="build"/>

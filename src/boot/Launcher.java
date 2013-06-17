@@ -20,12 +20,42 @@ import boot.arguments.Matcher;
 import boot.arguments.ClosingArgument;
 import boot.arguments.UnmatchedArgumentException;
 
+/**
+ * @author Sam Craig (Sammidysam)
+ * @since indev
+ */
 public class Launcher {
+	/**
+	 * A boolean determining whether GUI is enabled or not.
+	 */
 	private boolean guiEnabled = true;
+
+	/**
+	 * The arguments inputted to the program.
+	 */
 	private String[] args;
+
+	/**
+	 * Sets field args to argument args.
+	 *
+	 * @param args The arguments inputted to the program.
+	 */
 	public Launcher(String[] args){
 		this.args = args;
 	}
+
+	/**
+	 * Processes the arguments in variable args.
+	 *
+	 * processArguments takes no arguments because the field args is used.
+	 * Each of the values in args will try to be matched with an argument class via the argument matcher.
+	 * If matched, the argument will be given arguments if necessary.
+	 * If any of the values in args are closing arguments, the program will terminate after processing all values of args.
+	 * The program will display any matched argument's info and then run the argument.
+	 * An UnmatchedArgumentException will be caught if any arguments are unable to be matched.
+	 *
+	 * @see boot.arguments.Matcher
+	 */
 	void processArguments(){
 		boolean hasClosing = false;
 		for(int i = 0; i < args.length; i++){
