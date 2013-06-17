@@ -28,6 +28,9 @@ public class Command {
 			return new String[0];
 		}
 	}
+	public String getHelp(){
+		return "Not yet implemented!";
+	}
 	public int run(Console caller){
 		return 0;
 	}

@@ -33,13 +33,16 @@ public class Launcher {
 				Argument arg = Matcher.matchArgument(args[i]);
 				if(args[i].contains("="))
 					arg.setEquals(args[i].substring(args[i].indexOf('=') + 1, args[i].length()));
-//				check if there is a closing argument
-//				if so, we will need to close after processing all args
+
+				// check if there is a closing argument
+				// if so, we will need to close after processing all args
 				if(arg instanceof ClosingArgument)
 					hasClosing = true;
-//				display information about the arg
+
+				// display information about the arg
 				arg.displayInfo();
-//				run necessary code for the argument
+
+				// run necessary code for the argument
 				arg.run(this);
 			} catch (UnmatchedArgumentException e) {
 				System.err.println(e.getMessage());

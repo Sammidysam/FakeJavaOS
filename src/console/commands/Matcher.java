@@ -8,7 +8,7 @@ import pro.ddopson.ClassEnumerator;
 
 public class Matcher {
 	private static String errorMessage = "Error dynamically loading commands:  ";
-	private static boolean isCommand(String simpleName){
+	public static boolean isCommand(String simpleName){
 		if(simpleName.startsWith("Command") && !simpleName.equals("Command"))
 			return true;
 		else
