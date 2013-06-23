@@ -18,7 +18,7 @@ flags="-textmode"
 
 launch(){
 	java -jar bin/FakeJavaOS.jar $flags
-	if $keepOpen ; then keepOpen; fi
+	if $keepOpen; then keepOpen; fi
 }
 
 ant
@@ -33,5 +33,5 @@ else
 	echo "Error on completion!"
 
 	# keep open if wanted
-	if $keepOpen ; then keepOpen; fi
+	if $keepOpen; then keepOpen; fi
 fi

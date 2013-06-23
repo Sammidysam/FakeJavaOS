@@ -165,5 +165,8 @@ pip-log.txt
 #*.txt
 
 *.exe
-*.sublime_project
-*.sublime_workspace
+*.sublime-project
+*.sublime-workspace
+javadoc/
+.todo.json
+*.*~

@@ -31,7 +31,17 @@
             <classpath refid="FakeJavaOS.build.classpath"/>
         </javac>
     </target>
-    <target depends="create-jar" name="jar"/>
+    <target name="javadoc">
+        <javadoc destdir="javadoc" author="true" version="false" sourcepath="src" packagenames="*" windowtitle="FakeJavaOS Documentation">
+            <classpath>
+                <fileset dir="lib">
+                    <include name="minimal-json.jar"/>
+                    <include name="ClassEnumerator.jar"/>
+                </fileset>
+            </classpath>
+        </javadoc>
+    </target>
+    <target depends="create-jar,javadoc" name="jar"/>
     <target depends="build" name="create-jar">
     	<jar destfile="${bin}/FakeJavaOS.jar" basedir="${obj}" includes="${obj}">
     		<manifest>
@@ -39,6 +49,7 @@
     			<attribute name="Class-Path" value="../lib/minimal-json.jar ../lib/ClassEnumerator.jar"/>
     		</manifest>
     		<fileset dir="${obj}"/>
+            <fileset dir="res"/>
     		<zipfileset dir="lib" includes="minimal-json.jar" fullpath="lib/minimal-json.jar"/>
             <zipfileset dir="lib" includes="ClassEnumerator.jar" fullpath="lib/ClassEnumerator.jar"/>
     	</jar>
