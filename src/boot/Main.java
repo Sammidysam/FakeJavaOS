@@ -14,7 +14,7 @@ public class Main {
 	/**
 	 * The program's main method.
 	 */
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		// set some properties used by the program
 		// JDrive is the default value at this time
 		try {

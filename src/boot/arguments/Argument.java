@@ -19,7 +19,7 @@ public class Argument {
 	 *
 	 * @return Whether the argument has arguments or not.
 	 */
-	public boolean hasEquals(){
+	public boolean hasEquals() {
 		return false;
 	}
 
@@ -28,7 +28,7 @@ public class Argument {
 	 *
 	 * @param equals The new value of the arguments inputted to the argument.
 	 */
-	public void setEquals(String equals){
+	public void setEquals(String equals) {
 		this.equals = equals;
 	}
 
@@ -38,15 +38,15 @@ public class Argument {
 	 *
 	 * @return The information associated with the argument.
 	 */
-	protected String getInfo(){
+	protected String getInfo() {
 		return null;
 	}
 
 	/**
 	 * Prints information about the argument, if the argument has information.
 	 */
-	public void displayInfo(){
-		if(getInfo() != null)
+	public void displayInfo() {
+		if (getInfo() != null)
 			System.out.println(getInfo());
 	}
 
@@ -55,7 +55,7 @@ public class Argument {
 	 *
 	 * @return The string that starts the argument.
 	 */
-	protected String getStarter(){
+	protected String getStarter() {
 		return null;
 	}
 
@@ -65,7 +65,7 @@ public class Argument {
 	 *
 	 * @return The activator-like name of the argument.
 	 */
-	protected String getName(){
+	protected String getName() {
 		return null;
 	}
 
@@ -74,7 +74,7 @@ public class Argument {
 	 *
 	 * @return The activator for the argument.
 	 */
-	public String getActivator(){
+	public String getActivator() {
 		return getStarter() + getName();
 	}
 
@@ -83,7 +83,7 @@ public class Argument {
 	 *
 	 * @param caller The launcher calling the argument.
 	 */
-	public void run(Launcher caller){
+	public void run(Launcher caller) {
 		
 	}
 }

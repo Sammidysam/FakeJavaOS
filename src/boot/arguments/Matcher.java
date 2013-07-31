@@ -8,26 +8,28 @@ import pro.ddopson.ClassEnumerator;
 
 public class Matcher {
 	private static String errorMessage = "Error dynamically loading arguments:  ";
-	private static boolean isArgument(String simpleName){
-		if(simpleName.startsWith("Argument") && !simpleName.equals("Argument"))
+	
+	private static boolean isArgument(String simpleName) {
+		if (simpleName.startsWith("Argument") && !simpleName.equals("Argument"))
 			return true;
 		else
 			return false;
 	}
+	
 	public static Argument matchArgument(String arg) throws UnmatchedArgumentException {
 		ArrayList<Class<?>> discoveredClasses = ClassEnumerator.getClassesForPackage(Matcher.class.getPackage());
 		ArrayList<Class<?>> goodClasses = new ArrayList<Class<?>>(0);
-		for(int i = 0; i < discoveredClasses.size(); i++)
-			if(isArgument(discoveredClasses.get(i).getSimpleName()))
+		for (int i = 0; i < discoveredClasses.size(); i++)
+			if (isArgument(discoveredClasses.get(i).getSimpleName()))
 				goodClasses.add(discoveredClasses.get(i));
-		for(int i = 0; i < goodClasses.size(); i++){
+		for (int i = 0; i < goodClasses.size(); i++) {
 			try {
-				Class<Argument> argumentClass = (Class<Argument>)Class.forName(goodClasses.get(i).getName());
-				Method getActivator = argumentClass.getMethod("getActivator", (Class[])null);
+				Class<Argument> argumentClass = (Class<Argument>) Class.forName(goodClasses.get(i).getName());
+				Method getActivator = argumentClass.getMethod("getActivator", (Class[]) null);
 				Object instance = argumentClass.newInstance();
-				String activator = (String)getActivator.invoke(instance, (Object[])null);
-				if(arg.equals(activator))
-					return (Argument)instance;
+				String activator = (String)getActivator.invoke(instance, (Object[]) null);
+				if (arg.equals(activator))
+					return (Argument) instance;
 			} catch (ClassNotFoundException e) {
 				System.err.println(errorMessage + e.getMessage());
 			} catch (NoSuchMethodException e) {

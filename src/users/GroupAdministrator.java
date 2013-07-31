@@ -1,7 +1,7 @@
 package users;
 
 public class GroupAdministrator extends Group {
-	public GroupAdministrator(){
+	public GroupAdministrator() {
 		rights.setCanDeleteAnything(true);
 		rights.setCanModifyAnything(true);
 	}

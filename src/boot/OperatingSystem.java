@@ -37,7 +37,7 @@ public class OperatingSystem {
 	 * @param driveLocation The location of the JDrive.
 	 * @param user The currently logged in user.
 	 */
-	public OperatingSystem(boolean guiEnabled, String driveLocation, User user){
+	public OperatingSystem(boolean guiEnabled, String driveLocation, User user) {
 		this.guiEnabled = guiEnabled;
 		this.driveLocation = driveLocation;
 		this.user = user;
@@ -46,9 +46,9 @@ public class OperatingSystem {
 	/**
 	 * A method that creates a gui if gui is enabled or creates a {@link console.Console} if gui is not enabled.
 	 */
-	void start(){
+	void start() {
 		System.out.println("Starting FakeJavaOS version " + getVersion() + "...");
-		if(guiEnabled){
+		if (guiEnabled) {
 			System.out.println("Setting up FakeJavaOS GUI...");
 		} else {
 			System.out.println("Setting up FakeJavaOS TextMode...");
@@ -62,7 +62,7 @@ public class OperatingSystem {
 	 *
 	 * @return The version, in a string.
 	 */
-	public static String getVersion(){
+	public static String getVersion() {
 		// creates a bufferedreader to read a file inside the jar
 		BufferedReader version = new BufferedReader(new InputStreamReader(OperatingSystem.class.getClassLoader().getResourceAsStream("version")));
 		

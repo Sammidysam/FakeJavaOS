@@ -1,7 +1,7 @@
 package boot.arguments;
 
 public class RunningArgument extends Argument {
-	public String getStarter(){
+	public String getStarter() {
 		return "-";
 	}
 }

@@ -4,18 +4,22 @@ import console.Console;
 
 public class Command {
 	protected String args = null;
-	public boolean hasArgs(){
+	
+	public boolean hasArgs() {
 		return false;
 	}
-	public void setArgs(String args){
+	
+	public void setArgs(String args) {
 		this.args = args;
 	}
-	public String getActivator(){
+	
+	public String getActivator() {
 		return null;
 	}
-	protected String[] splitArgs(){
+	
+	protected String[] splitArgs() {
 		try {
-			if(args.contains(" ")){
+			if (args.contains(" ")) {
 				return args.split(" ");
 			} else {
 				String[] argsList = new String[1];
@@ -28,10 +32,12 @@ public class Command {
 			return new String[0];
 		}
 	}
-	public String getHelp(){
+	
+	public String getHelp() {
 		return "Not yet implemented!";
 	}
-	public int run(Console caller){
+	
+	public int run(Console caller) {
 		return 0;
 	}
 }

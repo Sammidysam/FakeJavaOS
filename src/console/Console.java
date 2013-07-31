@@ -15,16 +15,18 @@ public class Console {
 	private User user;
 	private String lastDirectory = "J:/home";
 	private String currentDirectory = "J:/home/sam";
-	public Console(boolean guiEnabled, String driveLocation, User user){
-		if(guiEnabled)
+	
+	public Console(boolean guiEnabled, String driveLocation, User user) {
+		if (guiEnabled)
 			setupWindow();
 		this.driveLocation = driveLocation;
 		this.user = user;
 	}
-	public void processCommand(String input){
+	
+	public void processCommand(String input) {
 		try {
 			Command command = input.contains(" ") ? Matcher.matchCommand(input.substring(0, input.indexOf(' '))) : Matcher.matchCommand(input);
-			if(command.hasArgs() && input.indexOf(' ') != -1){
+			if (command.hasArgs() && input.indexOf(' ') != -1) {
 				String args = input.substring(input.indexOf(' ') + 1, input.length());
 				command.setArgs(args);
 			}
@@ -33,8 +35,9 @@ public class Console {
 			System.out.println(e.getMessage());
 		}
 	}
-	public void loop(){
-		while (true){
+	
+	public void loop() {
+		while (true) {
 			System.out.print(user.getName() + " @ " + currentDirectory + "]$ ");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			String input;
@@ -46,25 +49,32 @@ public class Console {
 			}
 		}
 	}
-	private void setupWindow(){
+	
+	private void setupWindow() {
 		System.out.println("Not yet implemented!");
 	}
-	public String getLastDirectory(){
+	
+	public String getLastDirectory() {
 		return lastDirectory;
 	}
-	public String getCurrentDirectory(){
+	
+	public String getCurrentDirectory() {
 		return currentDirectory;
 	}
-	public String getDriveLocation(){
+	
+	public String getDriveLocation() {
 		return driveLocation;
 	}
-	public User getUser(){
+	
+	public User getUser() {
 		return user;
 	}
-	public void setLastDirectory(String lastDirectory){
+	
+	public void setLastDirectory(String lastDirectory) {
 		this.lastDirectory = lastDirectory;
 	}
-	public void setCurrentDirectory(String currentDirectory){
+	
+	public void setCurrentDirectory(String currentDirectory) {
 		this.currentDirectory = currentDirectory;
 	}
 }

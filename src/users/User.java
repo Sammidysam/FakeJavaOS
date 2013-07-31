@@ -15,12 +15,14 @@ public class User {
 	private String name;
 	private String password;
 	private Group group;
-	public User(String name, String password, Group group){
+	
+	public User(String name, String password, Group group) {
 		this.name = name;
 		this.password = password;
 		this.group = group;
 	}
-	public boolean saveUser(String driveLocation){
+	
+	public boolean saveUser(String driveLocation) {
 		File userSaveLocation = new File(driveLocation + File.separatorChar + "users.json");
 		boolean exists = userSaveLocation.exists();
 		FileWriter writer = null;
@@ -30,13 +32,13 @@ public class User {
 		JsonArray passwords = new JsonArray();
 		JsonArray groups = new JsonArray();
 		try {
-			if(!exists && !userSaveLocation.createNewFile())
+			if (!exists && !userSaveLocation.createNewFile())
 				return false;
 //			build and write JSON data
 			fstream = new FileInputStream(driveLocation + File.separatorChar + "users.json");
 			DataInputStream in = new DataInputStream(fstream);
 			br = new BufferedReader(new InputStreamReader(in));
-			if(exists){
+			if (exists) {
 				JsonObject users = JsonObject.readFrom(br);
 				usernames = users.get("Usernames").asArray();
 				passwords = users.get("Passwords").asArray();
@@ -85,13 +87,16 @@ public class User {
 			}
 		}
 	}
-	public String getName(){
+	
+	public String getName() {
 		return name;
 	}
-	public String getPassword(){
+	
+	public String getPassword() {
 		return password;
 	}
-	public Group getGroup(){
+	
+	public Group getGroup() {
 		return group;
 	}
 }

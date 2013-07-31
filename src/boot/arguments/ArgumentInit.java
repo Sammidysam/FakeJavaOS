@@ -14,13 +14,15 @@ import users.User;
 import boot.Launcher;
 
 public class ArgumentInit extends ClosingArgument {
-	protected String getInfo(){
+	protected String getInfo() {
 		return "Initializing FakeJavaOS...";
 	}
-	protected String getName(){
+	
+	protected String getName() {
 		return "init";
 	}
-	public void run(Launcher caller){
+	
+	public void run(Launcher caller) {
 		System.out.println("FakeJavaOS needs a fake drive to store data in.  This will just be a folder on your computer.");
 		System.out.println("Would you like to specify a custom path [y] or use the default path [n]?");
 		System.out.println("The default path is " + System.getProperty("JDrive"));			
@@ -29,7 +31,7 @@ public class ArgumentInit extends ClosingArgument {
 		File driveLocation = null;
 		try {
 			String input = reader.readLine();
-			if(input.charAt(0) == 'y'){
+			if (input.charAt(0) == 'y') {
 				System.out.println("Please enter the custom path for the fake drive.");
 				input = reader.readLine();
 				File init = new File(System.getProperty("jarDir") + File.separatorChar + "init.txt");
@@ -40,7 +42,7 @@ public class ArgumentInit extends ClosingArgument {
 				input = System.getProperty("JDrive");
 			}
 			driveLocation = new File(input);
-			if(!driveLocation.mkdirs())
+			if (!driveLocation.mkdirs())
 				System.err.println("Failed to make necessary directories!");
 		} catch (IOException e) {
 			System.err.println("Failed to read user input!");
@@ -60,13 +62,13 @@ public class ArgumentInit extends ClosingArgument {
 			System.out.println("Would you like to make your user an administrator [a] or normal user [n]?");
 			char answer = reader.readLine().charAt(0);
 			Group group;
-			if(answer == 'a')
+			if (answer == 'a')
 				group = new GroupAdministrator();
 			else
 				group = new GroupNormal();
 			System.out.println("Saving user...");
 			User user = new User(name, password, group);
-			if(!user.saveUser(driveLocation.getAbsolutePath()))
+			if (!user.saveUser(driveLocation.getAbsolutePath()))
 				System.err.println("Failed to save user!");
 		} catch (IOException e) {
 			System.err.println("Failed to read user input!");
